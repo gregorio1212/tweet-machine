@@ -9,7 +9,7 @@ Hardware components used:
 - 16x2 LCD screen with I2C driver
 
 Brief intro:
-The project consists of a text editor which make use of a LCD screen to show the text typed. A Python script 
+The project consists of a text editor which makes use of a LCD screen to show the typed text. A Python script 
 opens a serial connection between the FRDM-KL05Z board and the laptop. This UART connection makes it possible
 to send the text typed on the LCD screen to the laptop. Through a Python script, this message sent to the lap
 top is turned into a tweet automatically. In the Python script is also possible to set a limit of tweets which
