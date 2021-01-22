@@ -9,10 +9,10 @@
 #include "lcd1602.h"
 
 //PORT A INPUT in hex 0x18c0
-#define R1 12   //0x1000
-#define R2 7		//0x80
-#define R3 11		//0x800
-#define R4 6		//0x40
+#define R1 12   
+#define R2 7		
+#define R3 11		
+#define R4 6		
 
 //PORT B OUTPUT in hex 0x08c1
 #define C1 0
@@ -196,10 +196,10 @@ char pressed_key(char button, uint8_t group){
 				temp = LCD1602_Print("t");
 				break;
 			case 11:
-				temp = LCD1602_Print("x");
+				temp = LCD1602_Print("w");
 				break; 	
 			case 10:
-				temp = LCD1602_Print("w");
+				temp = LCD1602_Print("z");
 				break; 
 			case 9:
 				temp = LCD1602_Print(" ");
@@ -231,7 +231,7 @@ char pressed_key(char button, uint8_t group){
 				temp = LCD1602_Print("u");
 				break;
 			case 11:
-				temp = LCD1602_Print("z");
+				temp = LCD1602_Print("x");
 				break; 	
 			case 10:
 				temp = LCD1602_Print(".");
