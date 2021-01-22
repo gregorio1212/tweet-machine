@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 * Name: keyboard.h
-* PROJECT: TEXT EDITOR for FRDM-KL05Z board using 4x4 keyboard and LCD
+* PROJECT: Tweet Machine for FRDM-KL05Z board using 4x4 keyboard and LCD
 * Author: Gregório da Luz
 *----------------------------------------------------------------------------*/
 

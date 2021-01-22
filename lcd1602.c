@@ -8,7 +8,7 @@
  * @date Sep 2020
  * @brief File containing definitions for LCD 2x16.
  * @ver 0.3 
- * LCD1602_Print(char *str) altered to return char by da Luz
+ * LCD1602_Print(char *str) altered to return char by Gregório da Luz
  */
 
 #include "lcd1602.h"
