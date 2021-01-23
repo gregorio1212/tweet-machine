@@ -1,20 +1,20 @@
 /*-----------------------------------------------------------------------------
 * Name: keyboard.h
-* PROJECT: Tweet Machine for FRDM-KL05Z board using 4x4 keyboard and LCD
-* Author: Gregório da Luz
+* PROJECT: TEXT EDITOR for FRDM-KL05Z board using 4x4 keyboard and LCD
+* Author: GregÃ³rio da Luz
 *----------------------------------------------------------------------------*/
 
 #include "MKL05Z4.h" 
 #include "keyboard.h"
 #include "lcd1602.h"
 
-//PORT A INPUT in hex 0x18c0
+//PORT A INPUT
 #define R1 12   
 #define R2 7		
 #define R3 11		
 #define R4 6		
 
-//PORT B OUTPUT in hex 0x08c1
+//PORT B OUTPUT
 #define C1 0
 #define C2 7 
 #define C3 6
@@ -243,7 +243,6 @@ char pressed_key(char button, uint8_t group){
 	}
 	return temp;
 }
-
 
 
 
