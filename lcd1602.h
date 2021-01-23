@@ -22,7 +22,7 @@
 void LCD1602_Init(void);
 /**
  * @brief Print on the display.
- *	adapted by Gregório da Luz to return char value, which is the value of the letter written on the LCD screen
+ *	adapted by GregÃ³rio da Luz to return char value, which is the value of the letter written on the LCD screen
  * @param String to display.
  */
 char LCD1602_Print(char *str);
