@@ -65,8 +65,8 @@ char keypad_getkey(void){
 	
 	if(row == 0x18C0) return 0; //no zero on the rows so no key pressed
 	
-	for(col=0;col<4;col++){							//if a key is pressed, we move on
-		PTB->PDDR = 0; 										//disable columns
+	for(col=0;col<4;col++){				//if a key is pressed, we move on
+		PTB->PDDR = 0; 				//disable columns
 		PTB->PDDR |= col_select[col]; 		//enable one column
 		PTB->PCOR = col_select[col];
 		delay_Us(2);
@@ -77,7 +77,7 @@ char keypad_getkey(void){
 	
 	if(col == 4) return 0; // in this case, no key pressed
 	
-	if(row == 0x8C0)  return col*4+1; //row 1  ( row = 0x18C0 - value of the pressed button) value of the rows can be read at beginning of the file
+	if(row == 0x8C0)  return col*4+1; //row 1  
 	if(row == 0x1840) return col*4+2; //row 2
 	if(row == 0x10C0) return col*4+3; //row 3
 	if(row == 0x1880) return col*4+4; //row 1
