@@ -8,7 +8,7 @@
  * @date Sep 2020
  * @brief File containing definitions for LCD 2x16.
  * @ver 0.3 
- * LCD1602_Print(char *str) altered to return char by Gregório da Luz
+ * LCD1602_Print(char *str) altered to return char by da Luz
  */
 
 #include "lcd1602.h"
@@ -80,7 +80,7 @@ void LCD1602_ClearAll(void) {
 	
 	LCD1602_Write8(LCD_CLEARDISPLAY, 0);
 }
-//Gregório: changed from void to char to avoid setting returns on pressed_key() function from keyboard.h
+//GregÃ³rio: changed from void to char to avoid setting returns on pressed_key() function from keyboard.h
 char LCD1602_Print(char *str) {
 
   uint8_t str_len = 0;

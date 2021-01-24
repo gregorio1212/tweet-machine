@@ -53,7 +53,7 @@ void UART_Print(const char *str, uint8_t size) {
     ++str_len;
   }
 }
-// new parameter added by Gregório da Luz
+// new parameter added by GregÃ³rio da Luz
 void UART_Println(const char *str, uint8_t size) {
 	
 	UART_Print(str, size);
@@ -68,3 +68,4 @@ void uart_send(uint8_t data) {
 	while(!(UART0->S1 & UART0_S1_TDRE_MASK));
 	UART0->D = data;
 }
+

@@ -1,20 +1,20 @@
 /*-----------------------------------------------------------------------------
-* Name: keyboard.h
-* PROJECT: Tweet Machine for FRDM-KL05Z board using 4x4 keyboard and LCD
-* Author: Gregório da Luz
+* Name: keyboard.c
+* PROJECT: TEXT EDITOR for FRDM-KL05Z board using 4x4 keyboard and LCD
+* Author: GregÃ³rio da Luz
 *----------------------------------------------------------------------------*/
 
 #include "MKL05Z4.h" 
 #include "keyboard.h"
 #include "lcd1602.h"
 
-//PORT A INPUT in hex 0x18c0
+//PORT A INPUT
 #define R1 12   
 #define R2 7		
 #define R3 11		
 #define R4 6		
 
-//PORT B OUTPUT in hex 0x08c1
+//PORT B OUTPUT
 #define C1 0
 #define C2 7 
 #define C3 6
@@ -43,19 +43,11 @@ PORTA->PCR[R1] |= PORT_PCR_MUX(1)|MASK_PULLUP;
 PORTA->PCR[R2] |= PORT_PCR_MUX(1)|MASK_PULLUP;   
 PORTA->PCR[R3] |= PORT_PCR_MUX(1)|MASK_PULLUP;
 PORTA->PCR[R4] |= PORT_PCR_MUX(1)|MASK_PULLUP; 
-
-//CLEANING somehow it is dirty here
-//PORTA->PCR[0] &=~MASK_PULLUP;
-//PORTA->PCR[1] &=~MASK_PULLUP;
 	
-PORTB->PCR[C1] |= PORT_PCR_MUX(1)|MASK_PULLUP; 
-PORTB->PCR[C2] |= PORT_PCR_MUX(1)|MASK_PULLUP;	
-PORTB->PCR[C3] |= PORT_PCR_MUX(1)|MASK_PULLUP;
-PORTB->PCR[C4] |= PORT_PCR_MUX(1)|MASK_PULLUP;
-	
-PTB->PDDR = (1<<C1|1<<C2|1<<C3|1<<C4);
-PTA->PDDR = (0<<R1|0<<R2|0<<R3|0<<R4);
-	
+PORTB->PCR[C1] |= PORT_PCR_MUX(1);
+PORTB->PCR[C2] |= PORT_PCR_MUX(1);	
+PORTB->PCR[C3] |= PORT_PCR_MUX(1);
+PORTB->PCR[C4] |= PORT_PCR_MUX(1);	
 }
 
 char keypad_getkey(void){
@@ -65,8 +57,7 @@ char keypad_getkey(void){
 	/* SETTING OUTPUTS FOR 0 on the columns */
 	PTB->PDDR |= (1<<C1|1<<C2|1<<C3|1<<C4);
 	PTB->PCOR = (1<<C1|1<<C2|1<<C3|1<<C4);
-	
-	delay_Us(2);
+	delay_Us(2);	//safety
 	
 	row = PTA->PDIR & 0X18C0; //read rows
 	
@@ -74,23 +65,19 @@ char keypad_getkey(void){
 	
 	if(row == 0x18C0) return 0; //no zero on the rows so no key pressed
 	
-	//however, if a key is pressed, we move on
-
-	for(col=0;col<4;col++){
-		PTB->PDDR = 0; //disable columns
-		PTB->PDDR |= col_select[col]; //enable one column
+	for(col=0;col<4;col++){				//if a key is pressed, we move on
+		PTB->PDDR = 0; 				//disable columns
+		PTB->PDDR |= col_select[col]; 		//enable one column
 		PTB->PCOR = col_select[col];
 		delay_Us(2);
 		row = PTA->PDIR & 0X18C0;
 		if(row != 0x18C0) break;
 	}
-	
 	PTB->PDDR = 0; //disable columns
 	
 	if(col == 4) return 0; // in this case, no key pressed
 	
-	
-	if(row == 0x8C0)  return col*4+1; //row 1  ( row = 0x18C0 - value of the pressed button) value of the rows can be read at beginning of the file
+	if(row == 0x8C0)  return col*4+1; //row 1  
 	if(row == 0x1840) return col*4+2; //row 2
 	if(row == 0x10C0) return col*4+3; //row 3
 	if(row == 0x1880) return col*4+4; //row 1
@@ -99,9 +86,7 @@ char keypad_getkey(void){
 }
 
 char pressed_key(char button, uint8_t group){
-	
 	char temp;
-	
 	if(group == 0){
 		switch(button) {
 			case 4:
@@ -136,7 +121,6 @@ char pressed_key(char button, uint8_t group){
 				break; 	
 		}
 	}
-	
 	if(group == 1){
 		switch(button) {
 			case 4:
@@ -171,7 +155,6 @@ char pressed_key(char button, uint8_t group){
 				break; 			
 		}
 	}
-	
 	if(group == 2){
 		switch(button) {
 			case 4:
@@ -206,7 +189,6 @@ char pressed_key(char button, uint8_t group){
 				break; 			
 		}
 	}
-	
 	if(group == 3){
 		switch(button) {
 			case 4:
@@ -243,8 +225,6 @@ char pressed_key(char button, uint8_t group){
 	}
 	return temp;
 }
-
-
 
 
 
