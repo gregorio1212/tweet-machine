@@ -48,11 +48,12 @@ void send_tweet(uint8_t column_LCD, uint8_t charac, char text[]){
 
 int main()
 {	
-	uint8_t charac = 0; 							// it controls the position of the characters on the LCD
-	uint8_t group = 0;								// group control for characters in the buttons
-	uint8_t column_LCD = 0;						// column selector for the LCD1602_SetCursor()
-	char key;													// keeps the number of the key pressed
-	char lcd_text[99];						    // keeps the typped values
+	uint8_t charac = 0; 					// it controls the position of the characters on the LCD
+	uint8_t group = 0;					// group control for characters in the buttons
+	uint8_t column_LCD = 0;					// column selector for the LCD1602_SetCursor()
+	char key;						// keeps the number of the key pressed
+	char lcd_text[99];			   		// keeps the typped values
+	
 	UART_Init(9600);
 	keyboardInitialize();
 	LCD1602_Init();	
